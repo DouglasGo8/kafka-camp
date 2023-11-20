@@ -1,0 +1,42 @@
+spring:
+  main:
+    web-application-type: none
+#
+camel:
+  springboot:
+    name: Section06StarterJsonApp
+    main-run-controller: true
+  thread-pool:
+    config:
+      pool-size: 3
+      max-pool-size: 5
+  # Increase Throughput Producer (Idempotent Safe Producer Config)
+  component:
+    kafka:
+      linger-ms: 20
+      retries: 2147483647
+      compression-codec: snappy
+      request-required-acks: -1
+      enable-idempotence: true
+      producer-batch-size: 32768
+      brokers: localhost:9092
+      #key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      #value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      #value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,camelroutes
+  endpoint:
+    health:
+      enabled: true
+    camelroutes:
+      read-only: true
+      enabled: true
+
+# App
+app:
+  timer-endpoint: timer://starterJsonAppTimer?period=10s&fixedRate=true
+  kafka-endpoint: kafka:t-employee

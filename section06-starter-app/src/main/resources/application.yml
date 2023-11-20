@@ -1,0 +1,41 @@
+# Camel
+camel:
+  springboot:
+    name: Section06StarterApp
+    main-run-controller: true
+  thread-pool:
+    config:
+      pool-size: 3
+      max-pool-size: 5
+  component:
+    kafka:
+      brokers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: starter-group
+      consumers-count: 3
+      # auto-offset-reset: latest # default
+
+# Spring
+spring:
+  main:
+    web-application-type: none
+
+# Management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,camelroutes
+  endpoint:
+    health:
+      enabled: true
+    camelroutes:
+      enabled: true
+      read-only: true
+
+
+# App
+app:
+  timer-endpoint: timer://starterAppTimer?period=10s&fixedRate=true
+  kafka-endpoint: kafka:t-hello
