@@ -61,3 +61,26 @@ camel.component.kafka.consumers-count=3
 . Sample to every minute fetch data to topic _t-commodity-price_, using timestamp, commodity type with three partitions
 . Classifying delivery semantic we have, #_at-most-once_#, here the offset is committed immediately after reader, if any error occurs we can have some message loss, other is #_at-least-once_# here when the offset is committed if anything goes wrong the offset should not commit, means that the consumer will re-process the message, in this case we need to ensure that our consumer has idempotent behavior, and the last is #_exactly-once_# will be processed only once, but hard to implement
 
+.Message Filter Spring Sample
+[source,java]
+----
+import org.springframework.boot.autoconfigure.kafka.ConcurrentKafkaListenerContainerFactoryConfigurer;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+
+class FooConsumer {
+
+  @KafkaListener(topics="x", groupId="xx", containerFactory="beanX")
+  void listenerFiltered(String message) {
+
+  }
+
+  @Bean
+  ConcurrentKafkaListenerContainerFactory<Object, Object> beanX(
+          ConcurrentKafkaListenerContainerFactoryConfigurer configurer) {
+    var factory = new ConcurrentKafkaListenerContainerFactory<Object, Object>();
+    factory.setRecordFilterStrategy(consumerRecord ->
+       bean.fieldX < 10
+    );
+  }
+}
+----

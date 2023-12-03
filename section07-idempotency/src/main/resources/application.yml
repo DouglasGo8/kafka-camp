@@ -4,7 +4,7 @@ spring:
 #
 camel:
   springboot:
-    name: Section07ConsumerGroupsApp
+    name: Section07IdempotencyApp
     main-run-controller: true # for long-running process
   thread-pool:
     config:
@@ -41,10 +41,8 @@ management:
 
 # App
 app:
-  timer-endpoint: timer://messageFilterTimer?period=5s&fixedRate=true
-  kafka-endpoint: kafka:t-location
-  kafka-endpoint-cg-all: kafka:t-location?groupId=cgAll
-  kafka-endpoint-cg-far: kafka:t-location?groupId=cgFar
+  timer-endpoint: timer://idempotencyTimer?period=10s&fixedRate=true
+  kafka-endpoint: kafka:t-??
   #
   #kafka-endpoint-consumer-cgdash: kafka:t-commodity?groupId=cg-dashboard
   #kafka-endpoint-consumer-cgnoti: kafka:t-commodity?groupId=cg-notification
