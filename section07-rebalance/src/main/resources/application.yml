@@ -4,7 +4,7 @@ spring:
 #
 camel:
   springboot:
-    name: Section07IdempotencyApp
+    name: Section07RebalanceApp
     main-run-controller: true # for long-running process
   thread-pool:
     config:
@@ -24,7 +24,7 @@ camel:
       #value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       #value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       #group-id: cg-dashboard #cg-notification
-      consumers-count: 3
+      #consumers-count: 3
       #metadata-max-age-ms: 180000
 
 management:
@@ -41,8 +41,10 @@ management:
 
 # App
 app:
-  timer-endpoint: timer://idempotencyTimer?period=5s&fixedRate=true
-  kafka-endpoint: kafka:t-purchase-request
+  timer-endpoint: timer://messageFilterTimer?period=5s&fixedRate=true
+  kafka-endpoint: kafka:t-rebalance
+#  kafka-endpoint-cg-all: kafka:t-location?groupId=cgAll
+#  kafka-endpoint-cg-far: kafka:t-location?groupId=cgFar
   #
   #kafka-endpoint-consumer-cgdash: kafka:t-commodity?groupId=cg-dashboard
   #kafka-endpoint-consumer-cgnoti: kafka:t-commodity?groupId=cg-notification

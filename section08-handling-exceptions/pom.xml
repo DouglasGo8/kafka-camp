@@ -8,11 +8,10 @@
     <version>1.0.0</version>
   </parent>
 
-  <groupId>section07.idempotency</groupId>
-  <artifactId>section07-idempotency</artifactId>
+  <groupId>section08.handling.exceptions</groupId>
+  <artifactId>section08-handling-exceptions</artifactId>
   <version>1.0.0</version>
 
-
-  <name>Kafka Camp :: Fulls Coverage :: Starter :: Message Filter</name>
+  <name>Kafka Camp :: Fulls Coverage :: Starter :: Handling Exceptions</name>
 
 </project>

@@ -67,7 +67,7 @@ camel.component.kafka.consumers-count=3
 import org.springframework.boot.autoconfigure.kafka.ConcurrentKafkaListenerContainerFactoryConfigurer;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 
-class FooConsumer {
+class KafkaConsumer {
 
   @KafkaListener(topics="x", groupId="xx", containerFactory="beanX")
   void listenerFiltered(String message) {
@@ -78,9 +78,26 @@ class FooConsumer {
   ConcurrentKafkaListenerContainerFactory<Object, Object> beanX(
           ConcurrentKafkaListenerContainerFactoryConfigurer configurer) {
     var factory = new ConcurrentKafkaListenerContainerFactory<Object, Object>();
+    //
     factory.setRecordFilterStrategy(consumerRecord ->
        bean.fieldX < 10
     );
+  }
+}
+----
+
+.Re-Balancing Topic
+[source, bash]
+----
+kafka-topic.sh --bostrap-server localhost:9092 --alter --topic XXX --partition 2
+----
+
+[source,java]
+----
+import org.apache.kafka.clients.consumer.ConsumerRecord;import org.springframework.kafka.listener.ConsumerAwareListenerErrorHandler;
+class MyGlobalException implements ConsumerAwareListenerErrorHandler {
+  void handle(Exception x, ConsumerRecord<?, ?> data, Consumer<?, ?> consumer) {
+    // TODO:
   }
 }
 ----

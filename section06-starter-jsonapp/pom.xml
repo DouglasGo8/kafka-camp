@@ -10,7 +10,7 @@
     <version>1.0.0</version>
   </parent>
 
-  <groupId>com.udemy.trainning.kafka.camp.section06.starter.jsonapp</groupId>
+  <groupId>section06.starter.jsonapp</groupId>
   <artifactId>section06-starter-jsonapp</artifactId>
   <version>1.0.0</version>
 

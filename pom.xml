@@ -13,16 +13,16 @@
     <skipTests>true</skipTests>
     <invoker>${skipTests}</invoker>
     <!-- Camel LTSv -->
-    <camel.version>4.1.0</camel.version>
-    <spring.boot-version>3.1.4</spring.boot-version>
+    <camel.version>4.4.2</camel.version>
+    <spring.boot-version>3.3.0</spring.boot-version>
     <!-- Maven -->
-    <jdk.version>17</jdk.version>
+    <jdk.version>21</jdk.version>
     <maven-release-plugin-version>3.0.1</maven-release-plugin-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-invoker-plugin-version>3.6.0</maven-invoker-plugin-version>
-    <maven-surefire-plugin-version>3.1.2</maven-surefire-plugin-version>
-    <maven-failsafe-plugin-version>3.1.2</maven-failsafe-plugin-version>
-    <maven-compiler-plugin-version>3.11.0</maven-compiler-plugin-version>
+    <maven-surefire-plugin-version>3.2.5</maven-surefire-plugin-version>
+    <maven-failsafe-plugin-version>3.2.5</maven-failsafe-plugin-version>
+    <maven-compiler-plugin-version>3.13.0</maven-compiler-plugin-version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven-remote-resources-plugin-version>3.1.0</maven-remote-resources-plugin-version>
   </properties>
@@ -60,6 +60,10 @@
       <groupId>org.apache.camel.springboot</groupId>
       <artifactId>camel-jackson-starter</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.camel.springboot</groupId>
+      <artifactId>camel-jsonpath-starter</artifactId>
+    </dependency>
     <!-- Spring Boot Common -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -85,7 +89,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.28</version>
+      <version>1.18.32</version>
     </dependency>
     <!-- Test -->
     <dependency>
@@ -172,5 +176,7 @@
     <module>section07-consumer-groups</module>
     <module>section07-message-filter</module>
     <module>section07-idempotency</module>
+    <module>section07-rebalance</module>
+    <module>section08-handling-exceptions</module>
   </modules>
 </project>

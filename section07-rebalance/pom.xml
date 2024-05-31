@@ -8,11 +8,10 @@
     <version>1.0.0</version>
   </parent>
 
-  <groupId>section07.idempotency</groupId>
-  <artifactId>section07-idempotency</artifactId>
+  <groupId>section07.rebalance.app</groupId>
+  <artifactId>section07-rebalance</artifactId>
   <version>1.0.0</version>
 
-
-  <name>Kafka Camp :: Fulls Coverage :: Starter :: Message Filter</name>
+  <name>Kafka Camp :: Fulls Coverage :: Starter :: Rebalance Topic</name>
 
 </project>

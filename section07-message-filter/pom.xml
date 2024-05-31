@@ -8,7 +8,7 @@
     <version>1.0.0</version>
   </parent>
 
-  <groupId>com.udemy.trainning.kafka.camp.section07.message.filter</groupId>
+  <groupId>section07.message.filter</groupId>
   <artifactId>section07-message-filter</artifactId>
   <version>1.0.0</version>
 
