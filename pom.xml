@@ -178,5 +178,6 @@
     <module>section07-idempotency</module>
     <module>section07-rebalance</module>
     <module>section08-handling-exceptions</module>
+    <module>section08-retrying-consumer</module>
   </modules>
 </project>
