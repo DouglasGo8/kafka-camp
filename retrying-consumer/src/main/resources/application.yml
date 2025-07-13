@@ -1,0 +1,48 @@
+spring:
+  main:
+    web-application-type: none
+#
+camel:
+  springboot:
+    name: Section08RetryingConsumer
+    main-run-controller: true # for long-running process
+  thread-pool:
+    config:
+      pool-size: 3
+      max-pool-size: 5
+  # Increase Throughput Producer (Idempotent Safe Producer Config)
+  component:
+    kafka:
+      linger-ms: 20
+      retries: 2147483647
+      compression-codec: snappy
+      request-required-acks: -1
+      enable-idempotence: true
+      producer-batch-size: 32768
+      brokers: localhost:9092
+      #key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      #value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      #value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: cg-image #cg-notification
+      consumers-count: 3
+      #metadata-max-age-ms: 180000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,camelroutes
+  endpoint:
+    health: true
+    camelroutes:
+      read-only: true
+
+# App
+app:
+  timer-endpoint: timer://retryingConsumer?period=15s&fixedRate=true
+  kafka-endpoint: kafka:t-image
+  #  kafka-endpoint-cg-all: kafka:t-location?groupId=cgAll
+  #  kafka-endpoint-cg-far: kafka:t-location?groupId=cgFar
+  #
+  #kafka-endpoint-consumer-cgdash: kafka:t-commodity?groupId=cg-dashboard
+  #kafka-endpoint-consumer-cgnoti: kafka:t-commodity?groupId=cg-notification

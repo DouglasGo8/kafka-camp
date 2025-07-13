@@ -1,31 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project
-        xmlns="http://maven.apache.org/POM/4.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.udemy.trainning.kafka.camp</groupId>
   <artifactId>kafka-camp</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
   <name>Kafka Camp :: Fulls Coverage</name>
+
   <properties>
     <skipTests>true</skipTests>
     <invoker>${skipTests}</invoker>
     <!-- Camel LTSv -->
-    <camel.version>4.4.2</camel.version>
-    <spring.boot-version>3.3.0</spring.boot-version>
+    <camel.version>4.12.0</camel.version>
+    <spring.boot-version>3.5.0</spring.boot-version>
     <!-- Maven -->
     <jdk.version>21</jdk.version>
-    <maven-release-plugin-version>3.0.1</maven-release-plugin-version>
+    <maven-release-plugin-version>3.1.1</maven-release-plugin-version>
+    <maven-invoker-plugin-version>3.9.0</maven-invoker-plugin-version>
+    <maven-surefire-plugin-version>3.5.3</maven-surefire-plugin-version>
+    <maven-failsafe-plugin-version>3.5.3</maven-failsafe-plugin-version>
+    <maven-compiler-plugin-version>3.14.0</maven-compiler-plugin-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven-invoker-plugin-version>3.6.0</maven-invoker-plugin-version>
-    <maven-surefire-plugin-version>3.2.5</maven-surefire-plugin-version>
-    <maven-failsafe-plugin-version>3.2.5</maven-failsafe-plugin-version>
-    <maven-compiler-plugin-version>3.13.0</maven-compiler-plugin-version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven-remote-resources-plugin-version>3.1.0</maven-remote-resources-plugin-version>
   </properties>
+
   <dependencyManagement>
     <dependencies>
       <!-- Spring Boot BOM -->
@@ -46,6 +47,7 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
     <!-- Camel Common -->
     <dependency>
@@ -89,7 +91,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.32</version>
+      <version>1.18.38</version>
     </dependency>
     <!-- Test -->
     <dependency>
@@ -109,12 +111,14 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven-surefire-plugin-version}</version>
+        <!--
         <executions>
           <execution>
             <id>default-test</id>
             <phase>none</phase>
           </execution>
         </executions>
+        -->
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -171,13 +175,15 @@
   </build>
   <!-- Modules -->
   <modules>
-    <module>section06-starter-app</module>
-    <module>section06-starter-jsonapp</module>
-    <module>section07-consumer-groups</module>
-    <module>section07-message-filter</module>
-    <module>section07-idempotency</module>
-    <module>section07-rebalance</module>
-    <module>section08-handling-exceptions</module>
-    <module>section08-retrying-consumer</module>
+    <module>starter-app</module>
+    <module>starter-jsonapp</module>
+    <module>consumer-groups</module>
+    <module>message-filter</module>
+    <module>idempotency</module>
+    <module>rebalance</module>
+    <module>handling-exceptions</module>
+    <module>retrying-consumer</module>
+    <module>deadletter-topic</module>
+    <module>scheduling-consumer</module>
   </modules>
 </project>

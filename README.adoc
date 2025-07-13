@@ -6,9 +6,10 @@ NOTE: This camp uses Spring Boot 3.x and Apache Camel 4.x LTS, & all µServices 
 
 - https://github.com/apache/camel-spring-boot-examples[Camel Spring Boot Samples]
 - https://docs.confluent.io/platform/current/quickstart/ce-docker-quickstart.html[Quick Start for Confluent Platform]
+- https://github.com/json-path/JsonPath[JsonPath Git]
 
 .Journey's Coverage Path
-image::arch.thumbs/pic/kafka-journey.png[]
+image::arch/pic/kafka-journey.png[]
 
 .Common Properties
 [source,properties]

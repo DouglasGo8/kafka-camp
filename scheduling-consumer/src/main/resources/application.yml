@@ -1,0 +1,49 @@
+spring:
+  main:
+    web-application-type: none
+#
+camel:
+  springboot:
+    name: Section08SchedulingConsumers
+    main-run-controller: true # for long-running process
+  thread-pool:
+    config:
+      pool-size: 3
+      max-pool-size: 5
+  # Increase Throughput Producer (Idempotent Safe Producer Config)
+  component:
+    kafka:
+      linger-ms: 20
+      retries: 2147483647
+      compression-codec: snappy
+      request-required-acks: -1
+      enable-idempotence: true
+      producer-batch-size: 32768
+      brokers: localhost:9092
+      #key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      #value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      #value-deserializer: org.springframework.kafka.support.serializer.StringSerializer
+      group-id: cg-ledger #cg-notification
+      consumers-count: 3
+      #metadata-max-age-ms: 180000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,camelroutes
+  endpoint:
+    health: true
+    camelroutes:
+      read-only: true
+
+# App
+app:
+  timer-endpoint: timer://schedulingConsumerTimer?period=5s&fixedRate=true
+  quartz-endpoint: quartz://schedulerConsumersGroup/myTimerName?cron=0/20+0+0+?+*+*+*
+  kafka-endpoint: kafka://t-general-ledger
+  #  kafka-endpoint-cg-all: kafka:t-location?groupId=cgAll
+  #  kafka-endpoint-cg-far: kafka:t-location?groupId=cgFar
+  #
+  #kafka-endpoint-consumer-cgdash: kafka:t-commodity?groupId=cg-dashboard
+  #kafka-endpoint-consumer-cgnoti: kafka:t-commodity?groupId=cg-notification
